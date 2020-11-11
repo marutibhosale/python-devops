@@ -1,3 +1,12 @@
+"""
+author -Maruti Bhosale
+date -11-11-2020
+time -16:25
+package -basic_core_programs
+Statement -find percentage of head and tail count
+
+"""
+
 import random
 
 
@@ -21,4 +30,5 @@ def flipPercentage():
     return
 
 
-flipPercentage()
+if __name__ == "__main__":
+    flipPercentage()
