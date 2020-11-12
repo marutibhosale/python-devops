@@ -28,8 +28,12 @@ class EuclideanDistance:
         return distance
 
 
-number1 = int(input("Enter First number: "))
-number2 = int(input("Enter Second number: "))
+try:
+    number1 = int(input("Enter First number: "))
+    number2 = int(input("Enter Second number: "))
+except ValueError:
+    print("Enter valid integer")
+
 
 if __name__ == "__main__":
     euclideanDistance = EuclideanDistance(number1, number2)
