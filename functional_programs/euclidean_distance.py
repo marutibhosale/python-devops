@@ -11,19 +11,21 @@ import math
 
 class EuclideanDistance:
 
-    def __init__(self, x, y):  # define constructor
+    def __init__(self, x_coordinator, y_coordinator):
         """
-        :param x: x-coordinator value
-        :param y: y-coordinator value
+        define constructor
+        :param x_coordinator: x-coordinator value
+        :param y_coordinator: y-coordinator value
         """
-        self.x = x
-        self.y = y
+        self.x_coordinator = x_coordinator
+        self.y_coordinator = y_coordinator
 
     def calculateDistance(self):  # calculating distance from origin to given point
         """
+        calculate distance between origin to given point
         :return:euclidean distance
         """
-        distance = math.sqrt(self.x * self.x + self.y * self.y)
+        distance = math.sqrt(self.x_coordinator * self.x_coordinator + self.y_coordinator * self.y_coordinator)
 
         return distance
 

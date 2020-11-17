@@ -13,17 +13,29 @@ import random
 class CouponNumbers:
 
     def inputNumberOfCoupons(self):
-        try:
-            numberOfCoupons = int(input("Enter number of distinct coupons"))
-        except ValueError as e:
-            print(e)
-            self.inputNumberOfCoupons()
+        """
+         taking input from user for number of coupons
+        :return:
+        """
+        while True:
+            try:
+                numberOfCoupons = int(input("Enter number of distinct coupons: "))
+                if numberOfCoupons < 1:
+                    print("number of coupons should be positive integer")
+                    continue
+                break
+            except Exception as e:
+                print(e)
         return numberOfCoupons
 
-    @staticmethod
-    def distinctCoupons(totalCoupons):
+    def distinctCoupons(self, totalCoupons):
+        """
+         finding distinct coupons from random numbers
+        :param totalCoupons:count of coupons which want to distinct
+        :return: return all distinct coupon numbers
+        """
         distinctNumbers = []
-        while len(distinctNumbers) <= totalCoupons:
+        while len(distinctNumbers) < totalCoupons:
             rand = random.randint(1, totalCoupons)
             if rand not in distinctNumbers:
                 distinctNumbers.append(rand)

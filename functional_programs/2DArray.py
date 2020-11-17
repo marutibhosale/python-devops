@@ -11,16 +11,21 @@ Statement -inserting and printing elements in 2d array
 class Array2D:
 
     def inputArrayParameters(self):
-        """ taking input for 2d array from user for number of rows and columns and all elements in array"""
+        """ taking input for 2d array from user for number of rows and columns and all elements in array
+        :return: array with filled all elements
+        """
+        while True:
+            try:
+                numbersOfColumns = int(input("Enter number of columns: "))
+                numbersOfRows = int(input("Enter number of rows: "))
+                if (numbersOfColumns or numbersOfRows) < 1:
+                    print("number of rows and columns should be positive integer")
+                    continue
+                break
+            except Exception as e:
+                print(e)
 
-        try:
-            numbersOfColumns = int(input("Enter number of columns: "))
-            numbersOfRows = int(input("Enter number of rows: "))
-        except Exception as e:
-            print(e)
-            self.inputArrayParameters()
-
-        self.array = []
+        array = []
         for column in range(numbersOfColumns):
             rowElements = []
             for row in range(numbersOfRows):
@@ -30,15 +35,15 @@ class Array2D:
                 except Exception as e:
                     print(e)
                     self.inputArrayParameters()
-            self.array.append(rowElements)
+            array.append(rowElements)
+        return array
 
-    def printArray(self):
+    def printArray(self, array):
         """printing array"""
-
-        print(self.array)
+        print(array)
 
 
 if __name__ == "__main__":
     array2d = Array2D()
-    array2d.inputArrayParameters()
-    array2d.printArray()
+    array = array2d.inputArrayParameters()
+    array2d.printArray(array)

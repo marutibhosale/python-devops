@@ -12,11 +12,21 @@ import random
 class Gambler:
 
     def findPercentage(self, countWin, countLoss, countPlay):
+        """
+         calculating win and loss percentage
+        :param countWin: count of win points
+        :param countLoss: count of loss points
+        :param countPlay: number of times play
+        :return: win percentage and loss percentage
+        """
         winPercentage = (countWin / countPlay) * 100
         lossPercentage = (countLoss / countPlay) * 100
         return winPercentage, lossPercentage
 
     def play(self):
+        """
+        :return: win count, loss count and number of played count
+        """
         winCount = 0
         lossCount = 0
         playCount = 0
@@ -33,13 +43,20 @@ class Gambler:
         return winCount, lossCount, playCount
 
     def setCondition(self):
-        try:
-            self.stake = int(input("Enter money amount to start gambling: "))
-            self.goal = int(input("Enter money amount for win: "))
-            self.numberOfTimes = int(input("How many times want to play: "))
-        except ValueError as e:
-            print(e)
-            self.setCondition()
+        """
+        taking inputs for gambling conditions
+        """
+        while True:
+            try:
+                self.stake = int(input("Enter money amount to start gambling: "))
+                self.goal = int(input("Enter money amount for win: "))
+                self.numberOfTimes = int(input("How many times want to play: "))
+                if self.stake < 1 or self.goal < 1 or self.numberOfTimes < 1:
+                    print("Enter numbers should be positive integer")
+                    continue
+                break
+            except ValueError as e:
+                print(e)
 
 
 if __name__ == "__main__":

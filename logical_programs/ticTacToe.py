@@ -13,19 +13,20 @@ class TicTacToe:
     cpuPosition = []
 
     def createBoard(self):
-        self.gameBoard = [[' ', '|', ' ', '|', ' '],
-                          ['-', '+', '-', '+', '-'],
-                          [' ', '|', ' ', '|', ' '],
-                          ['-', '+', '-', '+', '-'],
-                          [' ', '|', ' ', '|', ' ']]
+        """ creating game board"""
+        self.gameBoard = [[' ' for _ in range(3)] for _ in range(3)]
 
     def printBoard(self):
-        for row in self.gameBoard:
-            print('\n')
-            for item in row:
-                print(item, end='')
+        """printing game board"""
+        for row in range(len(self.gameBoard)):
+            print("\n______")
+            for column in range(len(self.gameBoard)):
+                print(str(self.gameBoard[row][column]), end='|')
 
     def playUser(self):
+        """
+        :return: return user new position
+        """
         try:
             userPos = int(input("\n Enter your placement(1-9): "))
         except Exception as e:
@@ -40,6 +41,9 @@ class TicTacToe:
         return userPos
 
     def playCpu(self):
+        """
+        :return: return new cpu position
+        """
         try:
             cpuPos = random.randint(1, 9)
         except Exception as e:
@@ -54,6 +58,7 @@ class TicTacToe:
         return cpuPos
 
     def placePosition(self, player, pos):
+        """ as per position inserting symbols in array"""
         symbol = ' '
         if player == 'user':
             symbol = 'X'
@@ -62,26 +67,13 @@ class TicTacToe:
             symbol = '0'
             self.cpuPosition.append(pos)
 
-        if pos == 1:
-            self.gameBoard[0][0] = symbol
-        elif pos == 2:
-            self.gameBoard[0][2] = symbol
-        elif pos == 3:
-            self.gameBoard[0][4] = symbol
-        elif pos == 4:
-            self.gameBoard[2][0] = symbol
-        elif pos == 5:
-            self.gameBoard[2][2] = symbol
-        elif pos == 6:
-            self.gameBoard[2][4] = symbol
-        elif pos == 7:
-            self.gameBoard[4][0] = symbol
-        elif pos == 8:
-            self.gameBoard[4][2] = symbol
-        elif pos == 9:
-            self.gameBoard[4][4] = symbol
+        self.gameBoard[(pos - 1) // 3][(pos - 1) % 3] = symbol
 
     def checkWinner(self):
+        """
+         checking who is win the game
+        :return: returns winning message
+        """
         win = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
         for condition in win:
             if set(condition).intersection(set(self.userPosition)) == set(condition):
@@ -118,4 +110,3 @@ if __name__ == "__main__":
         print('\n')
         print('='*30)
         tictactoe.printBoard()
-

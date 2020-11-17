@@ -11,48 +11,48 @@ Statement -program for stop watch
 class StopWatch:
 
     def inputStartTime(self):
-        """taking input for start hour,start minutes and start seconds"""
-        try:
-            hoursStart = int(input("Enter starting hour: "))
-            minutesStart = int(input("Enter starting minutes: "))
-            secondStart = int(input("Enter starting seconds: "))
-        except Exception as e:
-            print(e)
-            self.inputStartTime()
+        """
+        taking input for start hour,start minutes and start seconds
+        :return: addition all seconds
+        """
+        while True:
+            try:
+                hoursStart = int(input("Enter starting hour between 1-24: "))
+                minutesStart = int(input("Enter starting minutes between 1-59: "))
+                secondStart = int(input("Enter starting seconds between 1-59: "))
+                if hoursStart not in range(1, 25) or (minutesStart or secondStart) not in range(1, 60):
+                    print("Enter number should be in mention range")
+                    continue
+                break
+            except Exception as e:
+                print(e)
 
-        if hoursStart > 24:
-            print("hours should be between 1 to 24")
-            self.inputStartTime()
-        if minutesStart > 59 or secondStart > 59:
-            print("minutes and seconds both should be between 1 to 59")
-            self.inputStartTime()
-
-        self.totalStartSecond = (hoursStart*60*60) + (minutesStart * 60) + secondStart
+        return (hoursStart*60*60) + (minutesStart * 60) + secondStart
 
     def inputEndTime(self):
-        """taking input for end hour,end minutes and end seconds"""
-        try:
-            hoursEnd = int(input("Enter ending hour: "))
-            minutesEnd = int(input("Enter ending minutes: "))
-            secondEnd = int(input("Enter ending seconds: "))
-        except Exception as e:
-            print(e)
-            self.inputEndTime()
+        """taking input for end hour,end minutes and end seconds
+        :return: return addition of all seconds
+        """
+        while True:
+            try:
+                hoursEnd = int(input("Enter ending hour between 1-24: "))
+                minutesEnd = int(input("Enter ending minutes between 1-60: "))
+                secondEnd = int(input("Enter ending seconds between 1-60: "))
+                if hoursEnd not in range(1, 25) or (minutesEnd or secondEnd) not in range(1,60):
+                    print("Enter numbers should be in mention range")
+                    continue
+                break
+            except Exception as e:
+                print(e)
 
-        if hoursEnd > 24:
-            print("hours should be between 1 to 24")
-            self.inputEndTime()
-        if minutesEnd > 59 or secondEnd > 59:
-            print("minutes and seconds both should be between 1 to 59")
-            self.inputEndTime()
-        self.totalEndSecond = (hoursEnd*60*60)+(minutesEnd*60)+secondEnd
+        return (hoursEnd*60*60)+(minutesEnd*60)+secondEnd
 
-    def findElapseTime(self):
+    def findElapseTime(self, totalEndSecond, totalStartSecond):
         """
         finding elapsed time between start and end time
         :return: returns elapse time
         """
-        totalTimeDiff = self.totalEndSecond - self.totalStartSecond
+        totalTimeDiff = totalEndSecond - totalStartSecond
         minutes = totalTimeDiff//60
         seconds = totalTimeDiff % 60
         hours = 0
@@ -64,7 +64,7 @@ class StopWatch:
 
 if __name__ == "__main__":
     stopWatch = StopWatch()
-    stopWatch.inputStartTime()
-    stopWatch.inputEndTime()
-    elapseTime = stopWatch.findElapseTime()
+    startTime = stopWatch.inputStartTime()
+    endTime = stopWatch.inputEndTime()
+    elapseTime = stopWatch.findElapseTime(endTime, startTime)
     print("Elapse time is: ", elapseTime)
