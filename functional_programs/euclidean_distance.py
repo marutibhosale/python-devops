@@ -3,7 +3,7 @@ author -Maruti Bhosale
 date -12-11-2020
 time -16:30
 package -functional_programs
-Statement -finding three number which adds to zero
+Statement -finding distance between origin and given point
 
 """
 
@@ -28,11 +28,13 @@ class EuclideanDistance:
         return distance
 
 
-try:
-    number1 = int(input("Enter First number: "))
-    number2 = int(input("Enter Second number: "))
-except ValueError:
-    print("Enter valid integer")
+while True:
+    try:
+        number1 = int(input("Enter x-coordinator: "))
+        number2 = int(input("Enter y-coordinator: "))
+        break
+    except ValueError:
+        print("Enter valid integer")
 
 
 if __name__ == "__main__":
