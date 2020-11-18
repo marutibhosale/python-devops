@@ -9,7 +9,9 @@ Statement -finding three number which adds to zero
 
 
 def sumToZero(array):
-    """finding triplet whose addition is zero"""
+    """
+    finding triplet whose addition is zero
+    """
 
     length = len(array)
     for i in range(length - 2):
@@ -20,12 +22,24 @@ def sumToZero(array):
 
 
 def createArray():
-    """ for create and filled array """
-
-    size = int(input("Enter size of array: "))
+    """
+    input array size and elements in array
+    :return: return filled array
+    """
+    while True:
+        try:
+            size = int(input("Enter size of array: "))
+            break
+        except Exception as e:
+            print(e)
     array = []
     for idx in range(size):
-        number = int(input("Enter number to add in array"))
+        while True:
+            try:
+                number = int(input("Enter number to add in array: "))
+                break
+            except Exception as e:
+                print(e)
         array.append(number)
     return array
 

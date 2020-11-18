@@ -10,39 +10,45 @@ import math
 
 class Quadratic:
 
-    def __init__(self, a, b, c):
+    def __init__(self, coefficient_a, coefficient_b, coefficient_c):
         """
-        :param a:value for coefficient a
-        :param b:value for coefficient b
-        :param c:value for coefficient c
+        initializing constructor
+        :param coefficient_a:value for coefficient a
+        :param coefficient_b:value for coefficient b
+        :param coefficient_c:value for coefficient c
         """
-        self.a = a
-        self.b = b
-        self.c = c
+        self.coefficient_a = coefficient_a
+        self.coefficient_b = coefficient_b
+        self.coefficient_c = coefficient_c
 
     def calculateDeltaValue(self):
         """
+        calculating delta value
         :return: absolute value of delta term
         """
-        deltaValue = self.b * self.b - 4 * self.a * self.c
+        deltaValue = self.coefficient_b * self.coefficient_b - 4 * self.coefficient_a * self.coefficient_c
         return abs(deltaValue)
 
     def calculateRoots(self):
         """
+        finding roots of quadratic equation
         :return:roots of quadratic equation
         """
         delta = (self.calculateDeltaValue())
-        rootOne = (-self.b + math.sqrt(delta)) / (2 * self.a)
-        rootTwo = (-self.b - math.sqrt(delta)) / (2 * self.a)
+        rootOne = (-self.coefficient_b + math.sqrt(delta)) / (2 * self.coefficient_a)
+        rootTwo = (-self.coefficient_b - math.sqrt(delta)) / (2 * self.coefficient_a)
         return rootOne, rootTwo
 
 
-try:
-    aValue = int(input("Enter a value: "))
-    bValue = int(input("Enter b value: "))
-    cValue = int(input("Enter c value: "))
-except ValueError:
-    print("Enter valid integer")
+while True:
+    try:
+        aValue = int(input("Enter the value for coefficient a: "))
+        bValue = int(input("Enter the value for coefficient b: "))
+        cValue = int(input("Enter the value for coefficient c: "))
+        break
+    except ValueError:
+        print("Enter valid integer")
+
 
 if __name__ == "__main__":
     quadratic = Quadratic(aValue, bValue, cValue)

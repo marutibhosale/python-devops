@@ -11,21 +11,28 @@ Statement -inserting and printing elements in 2d array
 class Array2D:
 
     def inputArrayParameters(self):
-        """ taking input for 2d array from user for number of rows and columns and all elements in array
-        :return: array with filled all elements
-        """
+        """ taking input for 2d array from user for number of rows and columns and all elements in array"""
+
+        try:
+            numbersOfColumns = int(input("Enter number of columns: "))
+            numbersOfRows = int(input("Enter number of rows: "))
+        except Exception as e:
+            print(e)
+            self.inputArrayParameters()
+
         while True:
             try:
                 numbersOfColumns = int(input("Enter number of columns: "))
                 numbersOfRows = int(input("Enter number of rows: "))
-                if (numbersOfColumns or numbersOfRows) < 1:
-                    print("number of rows and columns should be positive integer")
+                if (numbersOfColumns or numbersOfRows) <= 0:
+                    print("number of columns and rows should be greater than one")
                     continue
                 break
             except Exception as e:
                 print(e)
 
-        array = []
+
+        self.array = []
         for column in range(numbersOfColumns):
             rowElements = []
             for row in range(numbersOfRows):
@@ -35,15 +42,25 @@ class Array2D:
                 except Exception as e:
                     print(e)
                     self.inputArrayParameters()
-            array.append(rowElements)
-        return array
+                while True:
+                    try:
+                        element = int(input("Enter element in array: "))
+                        rowElements.append(element)
+                        break
+                    except Exception as e:
+                        print(e)
 
-    def printArray(self, array):
+            self.array.append(rowElements)
+
+    def printArray(self):
         """printing array"""
-        print(array)
+
+        print(self.array)
 
 
 if __name__ == "__main__":
     array2d = Array2D()
-    array = array2d.inputArrayParameters()
-    array2d.printArray(array)
+    array2d.inputArrayParameters()
+    array2d.printArray()
+    array2d.printArray()
+
