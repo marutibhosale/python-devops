@@ -4,7 +4,6 @@ date -16-11-2020
 time -22:30
 package -functional_programs
 Statement -inserting and printing elements in 2d array
-
 """
 
 

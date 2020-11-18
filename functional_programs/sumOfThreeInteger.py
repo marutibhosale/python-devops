@@ -4,7 +4,6 @@ date -11-11-2020
 time -22:00
 package -functional_programs
 Statement -finding three number which adds to zero
-
 """
 
 
